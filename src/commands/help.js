@@ -12,7 +12,7 @@ exports.run = async function (client, msg, args) {
         msg.channel.createMessage({ embed: {
             color: config.options.embedColour,
             title: 'Help Comand',
-            description: `I\'m a well design, stable music bot.\nDo ${msg.channel.guild.prefix} for extended information on a command.\n\n**Looking for support?** https://discord.gg/wp2Z6yy`,
+            description: `I\'m a well design, stable music bot.\nDo \`${msg.channel.guild.prefix}help commandName\` for extended information on a command.\n\n**Looking for support?** https://discord.gg/wp2Z6yy`,
             fields: [
                 { name: 'Music', value: '`play`, `pause`, `queue`, `resume`, `skip`, `stop`', inline: true },
                 { name: 'Misc', value: '`ping`, `invite`', inline: false}
@@ -27,7 +27,10 @@ exports.run = async function (client, msg, args) {
             msg.channel.createMessage({ embed: {
                 color: config.options.embedColour,
                 title: `${cmd.main.replace('{command}', args[0].toLowerCase()).replace('{prefix}', msg.channel.guild.prefix)} ${cmd.args}`,
-                description: cmd.description
+                fields: [
+                     { name: 'Description', value: cmd.description },
+                     { name: 'Arguments', value: cmd.args }
+                ]
             }});
         } catch (err) {
             msg.channel.createMessage({ embed: {

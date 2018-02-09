@@ -24,7 +24,7 @@ global.prefixes = require('./prefixes.json');
 
 client.on('ready', async () => {
     console.log(`Ready! (User: ${client.user.username})`);
-    client.editStatus('online', { name: `${config.options.prefix}help` });
+    client.editStatus('online', { name: `${config.options.prefix}help || ${client.guilds.size} servers!` });
 
     client.guilds.forEach(g => {
         if (!prefixes[g.id])
