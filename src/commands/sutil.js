@@ -26,7 +26,7 @@ exports.run = function (client, msg, args) {
     }
 
     if (args[0] === 'leave') {
-        if (msg.author.id !== '180093157554388993') return;
+        if (msg.author.id !== '241216483592634368') return;
         if (!args[1] || isNaN(args[1])) return msg.channel.createMessage({ embed: {
             color: config.options.embedColour,
             title: 'You need to specify an ID'

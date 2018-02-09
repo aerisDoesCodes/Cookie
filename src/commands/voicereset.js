@@ -18,7 +18,7 @@ exports.run = async function (client, msg, args) {
     m.edit({ embed: {
         color: config.options.embedColour,
         title: 'Voice Reset.',
-        description: 'Any further issues please report [here](https://discord.gg/xvtH2Yn)'
+        description: 'Any further issues please report [here](https://discord.gg/wp2Z6yy)'
     }});
 
 };
