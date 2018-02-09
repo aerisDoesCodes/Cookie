@@ -1,0 +1,15 @@
+{
+  "name": "cookie",
+  "version": "1.0.0",
+  "description": "Cookie bot made by love",
+  "main": "./src/cookie.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "aeris",
+  "license": "ISC",
+  "dependencies": {
+    "eris": "^0.8.4",
+    "snekfetch": "^3.6.4"
+  }
+}
