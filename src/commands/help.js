@@ -38,7 +38,7 @@ exports.run = async function (client, msg, args) {
             msg.channel.createMessage({ embed: {
                 color: config.options.embedColour,
                 title: 'Invalid command',
-                description: 'Did you type the command correctly?'
+                description: `${err}`
             }});
         }
 
