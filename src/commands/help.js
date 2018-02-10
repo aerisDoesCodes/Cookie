@@ -15,8 +15,8 @@ exports.run = async function (client, msg, args) {
             description: `I\'m a well design, stable music bot.\nDo \`${msg.channel.guild.prefix}help commandName\` for extended information on a command.\n\n**Looking for support?** https://discord.gg/wp2Z6yy`,
             fields: [
                 { name: 'Music', value: 'No commands yet', inline: true },
-                { name: 'Admin', value: '`Prefix`' },
-                { name: 'Misc', value: '`ping`, `invite`', inline: false},
+                { name: 'Admin', value: '`prefix`' },
+                { name: 'Misc', value: '`ping`, `invite`, `stats`', inline: false},
                 { name: 'Aliases', value: `\`\`\`${aliases}\`\`\`` }
             ]
         }});

@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "eris": "^0.8.4",
+    "moment": "^2.20.1",
+    "moment-duration-format": "^2.2.1",
     "snekfetch": "^3.6.4"
   }
 }
