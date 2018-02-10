@@ -13,6 +13,5 @@ exports.run = function(client, msg, args) {
 
 exports.usage = {
     main: '{prefix}{command}',
-    argss: 'None',
     description: 'Developer command'
 };

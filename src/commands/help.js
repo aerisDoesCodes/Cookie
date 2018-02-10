@@ -5,17 +5,19 @@ exports.run = async function (client, msg, args) {
     if (!args[0]) {
 
         const commands = await fs.readdirSync('./commands/');
-        // // let aliases  = require('../aliases.json');
-        // delete require.cache[require.resolve('../aliases.json')];
-        // aliases = Object.keys(aliases).map(a => `${a}${pad(10, a)}${aliases[a]}`).join('\n');
+        let aliases  = require('../aliases.json');
+        delete require.cache[require.resolve('../aliases.json')];
+        aliases = Object.keys(aliases).map(a => `${a}${pad(10, a)}${aliases[a]}`).join('\n');
 
         msg.channel.createMessage({ embed: {
             color: config.options.embedColour,
             title: 'Help Comand',
             description: `I\'m a well design, stable music bot.\nDo \`${msg.channel.guild.prefix}help commandName\` for extended information on a command.\n\n**Looking for support?** https://discord.gg/wp2Z6yy`,
             fields: [
-                { name: 'Music', value: '`play`, `pause`, `queue`, `resume`, `skip`, `stop`', inline: true },
-                { name: 'Misc', value: '`ping`, `invite`', inline: false}
+                { name: 'Music', value: 'No commands yet', inline: true },
+                { name: 'Admin', value: '`Prefix`' },
+                { name: 'Misc', value: '`ping`, `invite`', inline: false},
+                { name: 'Aliases', value: `\`\`\`${aliases}\`\`\`` }
             ]
         }});
 
@@ -27,9 +29,9 @@ exports.run = async function (client, msg, args) {
             msg.channel.createMessage({ embed: {
                 color: config.options.embedColour,
                 title: `${cmd.main.replace('{command}', args[0].toLowerCase()).replace('{prefix}', msg.channel.guild.prefix)}`,
+                description: cmd.description,
                 fields: [
-                    { name: 'Description', value: `${cmd.description}`, inline: true },
-                    { name: 'Arguments', value: `${cmd.argss}`, inline: false}
+                    { name: 'Arguments', value: cmd.argss || "None", inline: false}
                 ]
             }});
         } catch (err) {

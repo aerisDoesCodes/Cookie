@@ -37,6 +37,6 @@ function setAvatar(client, url, local) {
 
 exports.usage = {
     main: '{prefix}{command}',
-    argss: 'None',
+    argss: 'c!eval <query>',
     description: 'Developer command'
 };
