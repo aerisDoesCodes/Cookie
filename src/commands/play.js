@@ -163,6 +163,6 @@ exports.run = async function (client, msg, args) {
 
 exports.usage = {
     main: '{prefix}{command}',
-    args: '<YouTube URL/Playlist/Search | Soundcloud URL>',
+    argss: '<YouTube URL/Playlist/Search | Soundcloud URL>',
     description: 'Play the specified song'
 };

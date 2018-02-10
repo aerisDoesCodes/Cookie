@@ -25,6 +25,6 @@ exports.run = async function (client, msg, args) {
 
 exports.usage = {
     main: '{prefix}{command}',
-    args: '',
+    argss: 'None',
     description: 'Resets the voiceconnection if the bot is stuck'
 };

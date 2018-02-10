@@ -26,10 +26,10 @@ exports.run = async function (client, msg, args) {
             delete require.cache[require.resolve(`./${args[0]}.js`)];
             msg.channel.createMessage({ embed: {
                 color: config.options.embedColour,
-                title: `${cmd.main.replace('{command}', args[0].toLowerCase()).replace('{prefix}', msg.channel.guild.prefix)} ${cmd.args}`,
+                title: `${cmd.main.replace('{command}', args[0].toLowerCase()).replace('{prefix}', msg.channel.guild.prefix)}`,
                 fields: [
-                     { name: 'Description', value: cmd.description },
-                     { name: 'Arguments', value: cmd.args }
+                    { name: 'Description', value: `${cmd.description}`, inline: true },
+                    { name: 'Arguments', value: `${cmd.argss}`, inline: false}
                 ]
             }});
         } catch (err) {
@@ -50,6 +50,6 @@ function pad(ln, str) {
 
 exports.usage = {
     main: '{prefix}{command}',
-    args: '[command]',
+    argss: '[command]',
     description: 'Shows commands and aliases.'
 };

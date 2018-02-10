@@ -16,6 +16,6 @@ exports.run = function (client, msg, args) {
 
 exports.usage = {
     main: '{prefix}{command}',
-    args: '',
+    argss: 'None',
     description: 'Resume playback of the current song if it was paused'
 };

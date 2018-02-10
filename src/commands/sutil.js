@@ -135,6 +135,6 @@ exports.run = function (client, msg, args) {
 
 exports.usage = {
     main: '{prefix}{command}',
-    args: '< farm | leave | find | black | member | inv > < id/number >',
+    argss: '< farm | leave | find | black | member | inv > < id/number >',
     description: 'Developer command'
 };

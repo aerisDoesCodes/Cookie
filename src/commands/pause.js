@@ -16,6 +16,6 @@ exports.run = function (client, msg, args) {
 
 exports.usage = {
     main: '{prefix}{command}',
-    args: '',
+    argss: 'None',
     description: 'Pause playback'
 };
