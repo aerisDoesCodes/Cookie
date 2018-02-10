@@ -16,7 +16,7 @@ exports.run = async function (client, msg, args) {
             fields: [
                 { name: 'Music', value: 'No commands yet', inline: true },
                 { name: 'Admin', value: '`prefix`' },
-                { name: 'Misc', value: '`ping`, `invite`, `stats`', inline: false},
+                { name: 'Misc', value: '`ping`, `invite`, `stats`, `about`', inline: false},
                 { name: 'Aliases', value: `\`\`\`${aliases}\`\`\`` }
             ]
         }});

@@ -4,13 +4,20 @@ exports.run = function (client, msg, args) {
     require('moment-duration-format');
     const duration = moment.duration(client.uptime).format(' d [d], h [h], m [m], s [s]');
 
+    function bytesToSize(bytes) {
+        var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+        if(bytes === 0) return 'n/a';
+        var by = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+        if(by === 0) return `${bytes} ${sizes[by]}`;
+        return `${(bytes / Math.pow(1024, by)).toFixed(1)} ${sizes[by]}`;
+    }
+
         msg.channel.createMessage({embed:{
             title: `Cookie v${config.version}`,
-            description: `**Coded by aeris#0018**`,
             color: config.options.embedColour,
             fields: [
                 { name: 'Uptime', value: duration, inline: true},
-                { name: 'RAM Usage', value: `${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)} MB`, inline: true },
+                { name: 'Memory', value: `${bytesToSize(process.memoryUsage().rss)}/${bytesToSize(require('os').totalmem())}`, inline: true },
                 { name: 'Library', value: '[Eris](http://npmjs.com/package/eris)', inline: true },
                 { name: 'Guilds', value: client.guilds.size, inline: true },
                 { name: 'Users', value: client.users.size, inline: true },
