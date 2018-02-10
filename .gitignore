@@ -17,6 +17,4 @@ src/data/
 
 src/config\.json
 
-src/prefixes\.json
-
-src/aliases\.json
+prefixes.json
