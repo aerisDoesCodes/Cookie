@@ -1,7 +1,4 @@
 {
-	"q"  : "queue",
-	"p"  : "play",
-	"r"  : "resume",
-	"ps" : "pause",
-	"vcr": "voicereset"
+	"e"  : "eval",
+	"cmds"  : "help"
 }

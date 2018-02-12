@@ -12,9 +12,9 @@ exports.run = async function (client, msg, args) {
         msg.channel.createMessage({ embed: {
             color: config.options.embedColour,
             title: 'Help Comand',
-            description: `I\'m a well design, stable music bot.\nDo \`${msg.channel.guild.prefix}help commandName\` for extended information on a command.\n\n**Looking for support?** https://discord.gg/wp2Z6yy`,
+            description: `I\'m a well designed bot.\nDo \`${msg.channel.guild.prefix}help commandName\` for extended information on a command.\n\n**Looking for support?** https://discord.gg/wp2Z6yy`,
             fields: [
-                { name: 'Music', value: 'No commands yet', inline: true },
+                { name: 'Developer', value: '`eval`, `restart`, `sutil`', inline: true },
                 { name: 'Admin', value: '`prefix`' },
                 { name: 'Misc', value: '`ping`, `invite`, `stats`, `about`', inline: false},
                 { name: 'Aliases', value: `\`\`\`${aliases}\`\`\`` }
