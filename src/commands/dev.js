@@ -120,21 +120,21 @@ exports.run = function (client, msg, args) {
         }
     }
 
-    if (args[0] === 'black') {
-        if (!args[1] || isNaN(args[1])) return msg.channel.createMessage({ embed: {
-            color: config.options.embedColour,
-            title: 'You need to specify an ID'
-        }});
+    // if (args[0] === 'black') {
+    //     if (!args[1] || isNaN(args[1])) return msg.channel.createMessage({ embed: {
+    //         color: config.options.embedColour,
+    //         title: 'You need to specify an ID'
+    //     }});
 
-        msg.channel.createMessage({ embed: {
-            color: config.options.embedColour,
-            title: ':warning: Command not finished.'
-        }});
-    }
+    //     msg.channel.createMessage({ embed: {
+    //         color: config.options.embedColour,
+    //         title: ':warning: Command not finished.'
+    //     }});
+    // }
 };
 
 exports.usage = {
     main: '{prefix}{command}',
-    argss: '< farm | leave | find | black | member | inv > < id/number >',
+    argss: '< farm | leave | find | member | inv > < id/number >',
     description: 'Developer command'
 };

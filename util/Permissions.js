@@ -9,14 +9,7 @@ module.exports = {
     },
 
     isAdmin(member) {
-        return module.exports.hasRole(member, 'DJ') || owners.includes(member.id) || member.guild.ownerID === member.id;
+        return module.exports.hasRole(member, 'Admin') || owners.includes(member.id) || member.guild.ownerID === member.id;
     },
-
-    isBlocked(member) {
-        const hdb = require('../src/config.json').prop.blocked;
-        delete require.cache[require.resolve('../src/config.json')];
-
-        return (module.exports.hasRole(member, 'NoMusic') || hdb.includes(member.id)) && !owners.includes(member.id) && member.guild.ownerID !== member.id;
-    }
 
 };

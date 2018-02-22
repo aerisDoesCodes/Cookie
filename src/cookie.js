@@ -59,7 +59,7 @@ client.on('guildDelete', async (g) => {
 });
 
 client.on('messageCreate', async (msg) => {
-    if (msg.isFromDM || msg.author.bot || !guilds[msg.channel.guild.id] || msg.member.isBlocked) return;
+    if (msg.isFromDM || msg.author.bot || !guilds[msg.channel.guild.id]) return;
 
     if (msg.mentions.find(m => m.id === client.user.id) && msg.content.toLowerCase().includes('help'))
         return msg.channel.createMessage({ embed: {
@@ -67,7 +67,10 @@ client.on('messageCreate', async (msg) => {
             title: `Use ${prefixes[msg.channel.guild.id]}help for commands`
         }});
 
-    if (!msg.content.startsWith(prefixes[msg.channel.guild.id]) || !msg.channel.hasPermissions(client.user.id, 'sendMessages', 'embedLinks')) return;
+    if (!msg.content.startsWith(prefixes[msg.channel.guild.id]) || !msg.channel.hasPermissions(client.user.id, 'embedLinks')) {
+        return msg.channel.createMessage("**An error occured:**\nInsuficient permission. Requires **embedLinks**")
+    }
+    
 
     let command = msg.content.slice(prefixes[msg.channel.guild.id].length).toLowerCase().split(' ')[0];
     const args  = msg.content.split(' ').slice(1);

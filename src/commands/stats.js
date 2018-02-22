@@ -11,7 +11,7 @@ exports.run = function (client, msg, args) {
         if(by === 0) return `${bytes} ${sizes[by]}`;
         return `${(bytes / Math.pow(1024, by)).toFixed(1)} ${sizes[by]}`;
     }
-
+try {
         msg.channel.createMessage({embed:{
             title: `Cookie v${config.version}`,
             color: config.options.embedColour,
@@ -24,7 +24,9 @@ exports.run = function (client, msg, args) {
                 { name: 'Latency', value: `${msg.channel.guild.shard.latency}ms`, inline: true }
             ]
         }});
-    
+    } catch(e){
+        msg.channel.createMessage("An error occured:\n" + `**${e}**` + "\n\nPlease report this to the administrator if you think this is a bug.")
+    }
     };
     
     exports.usage = {
