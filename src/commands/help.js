@@ -2,6 +2,9 @@ const fs = require('fs');
 
 exports.run = async function (client, msg, args) {
 
+    if(!msg.channel.permissionsOf(client.user.id).has('embedLinks')) return msg.channel.createMessage("I don't have `Send Embed` permission.\nPlease contact an administrator if you think this is a bug.");
+
+
     if (!args[0]) {
 
         const commands = await fs.readdirSync('./commands/');
@@ -16,8 +19,7 @@ exports.run = async function (client, msg, args) {
             fields: [
                 { name: 'Developer', value: '`eval`, `restart`, `dev`', inline: true },
                 { name: 'Admin', value: '`prefix`' },
-                { name: 'Misc', value: '`ping`, `invite`, `stats`, `about`', inline: false},
-                { name: 'Aliases', value: `\`\`\`${aliases}\`\`\`` }
+                { name: 'Misc', value: '`ping`, `invite`, `stats`, `about`', inline: false}
             ]
         }});
 

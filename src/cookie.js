@@ -67,14 +67,8 @@ client.on('messageCreate', async (msg) => {
             title: `Use ${prefixes[msg.channel.guild.id]}help for commands`
         }});
 
-    if (!msg.content.startsWith(prefixes[msg.channel.guild.id]) || !msg.channel.hasPermissions(client.user.id, 'embedLinks')) {
-        return msg.channel.createMessage("**An error occured:**\nInsuficient permission. Requires **embedLinks**")
-    }
-    
-
     let command = msg.content.slice(prefixes[msg.channel.guild.id].length).toLowerCase().split(' ')[0];
     const args  = msg.content.split(' ').slice(1);
-    console.log(`${msg.author.username} > ${msg.content}`);
 
     /* Extras */
     msg.channel.guild.prefix = prefixes[msg.channel.guild.id];

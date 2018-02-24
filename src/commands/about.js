@@ -1,4 +1,7 @@
 exports.run = function (client, msg) {
+
+    if(!msg.channel.permissionsOf(client.user.id).has('embedLinks')) return msg.channel.createMessage("I don't have `Send Embed` permission.\nPlease contact an administrator if you think this is a bug.");
+
     
     msg.channel.createMessage({embed:{
         color: config.options.embedColour,

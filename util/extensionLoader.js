@@ -16,11 +16,6 @@ function loadExtensions(Eris) {
     });
 
     Object.defineProperties(Eris.Member.prototype, {
-        'isBlocked': {
-            get() {
-                return permissions.isBlocked(this.id);
-            }
-        },
         'isAdmin': {
             get() {
                 return permissions.isAdmin(this);
@@ -38,12 +33,6 @@ function loadExtensions(Eris) {
                 }
             }
             return check;
-        }
-    });
-
-    Object.defineProperty(Eris.VoiceConnectionManager.prototype, 'isConnected', {
-        value(guildId) {
-            return this.has(guildId) && this.get(guildId).channelId !== null;
         }
     });
 

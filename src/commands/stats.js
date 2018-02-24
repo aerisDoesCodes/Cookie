@@ -11,6 +11,8 @@ exports.run = function (client, msg, args) {
         if(by === 0) return `${bytes} ${sizes[by]}`;
         return `${(bytes / Math.pow(1024, by)).toFixed(1)} ${sizes[by]}`;
     }
+    if(!msg.channel.permissionsOf(client.user.id).has('embedLinks')) return msg.channel.createMessage("I don't have `Send Embed` permission.\nPlease contact an administrator if you think this is a bug.");
+
 try {
         msg.channel.createMessage({embed:{
             title: `Cookie v${config.version}`,
@@ -25,7 +27,7 @@ try {
             ]
         }});
     } catch(e){
-        msg.channel.createMessage("An error occured:\n" + `**${e}**` + "\n\nPlease report this to the administrator if you think this is a bug.")
+        msg.channel.createMessage(`An error occured:\n**${e}**\n\nPlease report this to the administrator if you think this is a bug.`)
     }
     };
     
