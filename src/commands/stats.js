@@ -1,36 +1,37 @@
-exports.run = function (client, msg, args) {
-
+exports.run = function(client, msg, args) {
     const moment = require('moment');
     require('moment-duration-format');
+    
     const duration = moment.duration(client.uptime).format(' d [d], h [h], m [m], s [s]');
-
+    
     function bytesToSize(bytes) {
-        var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-        if(bytes === 0) return 'n/a';
-        var by = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-        if(by === 0) return `${bytes} ${sizes[by]}`;
-        return `${(bytes / Math.pow(1024, by)).toFixed(1)} ${sizes[by]}`;
+        let sizeTypes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+        let by = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)))
+        if(!bytes || bytes == 0) return 'N/A';
+        if(!by || by == 0) return `${bytes} ${sizeTypes[by]}`;
+        
+        return `${(bytes / Math.pow(1024, by)).toFixed(1)} ${sizeTypes[by]}`;
     }
-try {
-        msg.channel.createMessage({embed:{
-            title: `Cookie v${config.version}`,
+    
+    try {
+        msg.channel.createMessage({embed: {
+            title: `Cookie - v${config.version}`,
             color: config.options.embedColour,
             fields: [
-                { name: 'Uptime', value: duration, inline: true},
-                { name: 'Memory', value: `${bytesToSize(process.memoryUsage().rss)}/${bytesToSize(require('os').totalmem())}`, inline: true },
-                { name: 'Library', value: '[Eris](http://npmjs.com/package/eris)', inline: true },
-                { name: 'Guilds', value: client.guilds.size, inline: true },
-                { name: 'Users', value: client.users.size, inline: true },
-                { name: 'Latency', value: `${msg.channel.guild.shard.latency}ms`, inline: true }
+                { name: 'Bot uptime', value: duration, inline: true },
+                { name: 'Memory usage', value: `${bytesToSize(process.memeoryUsage().rss)}/${bytesToSize(require('os').totalmem())}`, inline: true },
+                { name: 'API library', value: '[Eris](https://www.npmjs.com/package/eris)', inline: true },
+                { name: 'Total guilds', value: `${client.guilds.size}`, inline: true },
+                { name: 'Total users', value: `${client.users.size}`, inline: true },
+                { name: 'Ping latency', value: `${msg.channel.guild.shard.latency}ms`, inline: true }
             ]
         }});
-    } catch(e){
-        msg.channel.createMessage("An error occured:\n" + `**${e}**` + "\n\nPlease report this to the administrator if you think this is a bug.")
+    } catch(e) {
+        msg.channel.createMessage(`An error occurred!\n\n**${e}**\n\nIf you think this is a bug, report to an administrator+ on the official server.`)
     }
-    };
+}
     
-    exports.usage = {
-        main: '{prefix}{command}',
-        description: 'View statistics of the bot.'
-    };
-    
+exports.usage = {
+    main: '{prefix}{command}',
+    description: 'View bot statistics'
+}   
