@@ -19,7 +19,8 @@ exports.run = async function (client, msg, args) {
             fields: [
                 { name: 'Developer', value: '`eval`, `restart`, `dev`', inline: true },
                 { name: 'Admin', value: '`prefix`' },
-                { name: 'Misc', value: '`ping`, `invite`, `stats`, `about`', inline: false}
+                { name: 'Misc', value: '`ping`, `invite`, `stats`, `about`', inline: false},
+                { name: 'Nsfw', value: '`boobs`', inline: false}
             ]
         }});
 
