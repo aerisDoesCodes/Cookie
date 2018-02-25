@@ -20,7 +20,7 @@ exports.run = async function (client, msg, args) {
                 { name: 'Developer', value: '`eval`, `dev`', inline: true },
                 { name: 'Admin', value: '`prefix`' },
                 { name: 'Misc', value: '`ping`, `invite`, `stats`, `about`', inline: false},
-                { name: 'Nsfw', value: '`boobs` `butts`', inline: false}
+                { name: 'Nsfw', value: '`boobs`, `butts`', inline: false}
             ]
         }});
 
@@ -34,7 +34,8 @@ exports.run = async function (client, msg, args) {
                 title: `${cmd.main.replace('{command}', args[0].toLowerCase()).replace('{prefix}', config.prefix)}`,
                 description: cmd.description,
                 fields: [
-                    { name: 'Arguments', value: cmd.argss || "None", inline: false}
+                    { name: 'Aliases', value: cmd.alias || "None", inline: true},
+                    { name: 'Arguments', value: cmd.argss || "None", inline: true}
                 ]
             }});
         } catch (err) {

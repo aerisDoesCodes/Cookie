@@ -49,5 +49,6 @@ exports.run = function (client, msg) {
 
 exports.usage = {
     main: '{prefix}{command}',
-    description: 'Shows random boobs.'
+    description: 'Shows random boobs.',
+    alias: 'tits'
 };
