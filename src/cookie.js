@@ -55,13 +55,7 @@ client.on('guildDelete', async (g) => {
 
 client.on('messageCreate', async (msg) => {
     if (msg.isFromDM || msg.author.bot || !msg.content.startsWith(prefix)) return;
-
-    if (msg.mentions.find(m => m.id === client.user.id) && msg.content.toLowerCase().includes('help'))
-        return msg.channel.createMessage({ embed: {
-            color: config.options.embedColour,
-            title: `Use c!help for commands`
-        }});
-
+    
     let command = msg.content.slice(prefix.length).toLowerCase().split(/\s+/)[0];
     const args  = msg.content.split(" ").splice(1);
 
