@@ -19,28 +19,23 @@ Object.defineProperty(Eris.TextChannel.prototype, 'awaitMessages', {
     }
 });
 
-global.guilds   = {};
-global.prefixes = require('./prefixes.json');
+
+let prefix = config.prefix
+// global.prefixes = require('./prefixes.json');
 
 client.on('ready', async () => {
     console.log(`Ready! (User: ${client.user.username})`);
-    client.editStatus('online', { name: `${config.options.prefix}help || ${client.guilds.size} servers!` });
+    client.editStatus('online', { name: `${config.prefix}help || ${client.guilds.size} servers!` });
 
-    client.guilds.forEach(g => {
-        if (!prefixes[g.id])
-            prefixes[g.id] = config.options.prefix;
-
-        if (!guilds[g.id])
-            guilds[g.id] = { id: g.id, msgc: '', queue: [], svotes: [], repeat: 'None' };
-    });
+    
 });
 
 client.on('guildCreate', async (g) => {
     if (g.members.filter(m => m.bot).length / g.members.size >= 0.60)
         return g.leave();
 
-    prefixes[g.id] = config.options.prefix;
-    guilds[g.id] = { id: g.id, msgc: '', queue: [], svotes: [], repeat: 'None' };
+    // prefixes[g.id] = config.options.prefix;
+    
 
     if (!config.botlists) return;
 
@@ -49,8 +44,8 @@ client.on('guildCreate', async (g) => {
 });
 
 client.on('guildDelete', async (g) => {
-    delete prefixes[g.id];
-    delete guilds[g.id];
+    // delete prefixes[g.id];
+    
 
     if (!config.botlists) return;
 
@@ -59,19 +54,19 @@ client.on('guildDelete', async (g) => {
 });
 
 client.on('messageCreate', async (msg) => {
-    if (msg.isFromDM || msg.author.bot || !guilds[msg.channel.guild.id]) return;
+    if (msg.isFromDM || msg.author.bot ) return;
 
     if (msg.mentions.find(m => m.id === client.user.id) && msg.content.toLowerCase().includes('help'))
         return msg.channel.createMessage({ embed: {
             color: config.options.embedColour,
-            title: `Use ${prefixes[msg.channel.guild.id]}help for commands`
+            title: `Use c!help for commands`
         }});
 
-    let command = msg.content.slice(prefixes[msg.channel.guild.id].length).toLowerCase().split(' ')[0];
-    const args  = msg.content.split(' ').slice(1);
+    let command = msg.content.slice(prefix.length).toLowerCase().split(/\s+/)[0];
+    const args  = msg.content.split(" ").splice(1);
 
     /* Extras */
-    msg.channel.guild.prefix = prefixes[msg.channel.guild.id];
+    // msg.channel.guild.prefix = prefixes[msg.channel.guild.id];
 
     delete require.cache[require.resolve('./aliases.json')];
     const aliases = require('./aliases.json');

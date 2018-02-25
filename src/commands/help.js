@@ -15,12 +15,12 @@ exports.run = async function (client, msg, args) {
         msg.channel.createMessage({ embed: {
             color: config.options.embedColour,
             title: 'Help Comand',
-            description: `I\'m a well designed bot.\nDo \`${msg.channel.guild.prefix}help commandName\` for extended information on a command.\n\n**Looking for support?** https://discord.gg/DP9949T\n**Donate if you like Cookie** https://www.paypal.me/JohnLoveCookies`,
+            description: `I\'m a well designed bot.\nDo \`c!help commandName\` for extended information on a command.\n\n**Looking for support?** https://discord.gg/DP9949T\n**Donate if you like Cookie** https://www.paypal.me/JohnLoveCookies`,
             fields: [
-                { name: 'Developer', value: '`eval`, `restart`, `dev`', inline: true },
+                { name: 'Developer', value: '`eval`, `dev`', inline: true },
                 { name: 'Admin', value: '`prefix`' },
                 { name: 'Misc', value: '`ping`, `invite`, `stats`, `about`', inline: false},
-                { name: 'Nsfw', value: '`boobs`', inline: false}
+                { name: 'Nsfw', value: '`boobs` `butts`', inline: false}
             ]
         }});
 
@@ -31,7 +31,7 @@ exports.run = async function (client, msg, args) {
             delete require.cache[require.resolve(`./${args[0]}.js`)];
             msg.channel.createMessage({ embed: {
                 color: config.options.embedColour,
-                title: `${cmd.main.replace('{command}', args[0].toLowerCase()).replace('{prefix}', msg.channel.guild.prefix)}`,
+                title: `${cmd.main.replace('{command}', args[0].toLowerCase()).replace('{prefix}', config.prefix)}`,
                 description: cmd.description,
                 fields: [
                     { name: 'Arguments', value: cmd.argss || "None", inline: false}
