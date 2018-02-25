@@ -5,7 +5,7 @@ exports.run = function (client, msg) {
     try {
     get("https://random.cat/meow").then(res => {
         msg.channel.createMessage({embed: {
-            "color": config.options.embedColour,
+        "color": config.options.embedColour,
         "image": { "url": res.body.file },
         'footer': { text: "Powered by random.cat" }
         }})
