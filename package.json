@@ -15,6 +15,7 @@
     "moment": "^2.20.1",
     "moment-duration-format": "^2.2.1",
     "pretty-ms": "^3.1.0",
+    "request": "^2.83.0",
     "snekfetch": "^3.6.4"
   }
 }

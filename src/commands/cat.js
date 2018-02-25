@@ -1,17 +1,15 @@
-const request = require('request');
+const {get} = require("snekfetch");
 
 exports.run = function (client, msg) {
     if(!msg.channel.permissionsOf(client.user.id).has('embedLinks')) return msg.channel.createMessage("I don't have `Send Embed` permission.\nPlease contact an administrator if you think this is a bug.");
     try {
-    const response = request('https://random.dog/woof.json', (e,r,b) => {
-    var imageURL = JSON.parse(b).url
-    msg.channel.createMessage({embed:{
-        "color": config.options.embedColour,
-        "image": { "url": imageURL },
-        'footer': { text: "Powered by random.dog" }
-        
-    }})
-        })
+    get("https://random.cat/meow").then(res => {
+        msg.channel.createMessage({embed: {
+            "color": config.options.embedColour,
+        "image": { "url": res.body.file },
+        'footer': { text: "Powered by random.cat" }
+        }})
+    });
         
     } catch(e) {
         msg.channel.createMessage(`An error occured:\n**${e}**\n\nPlease report this to the administrator if you think this is a bug.`)
@@ -21,6 +19,6 @@ exports.run = function (client, msg) {
 
 exports.usage = {
     main: '{prefix}{command}',
-    description: 'Show random dog.',
-    alias: 'doggo'
+    description: 'Show random cat.',
+    alias: 'kat'
 };
