@@ -1,8 +1,8 @@
 const snek = require("snekfetch");
 const got = require('got');
 const _ = require('lodash');
-const DBL = require("dblapi.js");
-const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI2NDgxMTYxMzcwODc0Njc1MiIsImJvdCI6dHJ1ZSwiaWF0IjoxNDgzMDk5MjAwfQ.8tpNASxdSsfkVF7YparhyV1Ouy5ORQ3AM2jitd_Y-PI');
+// const DBL = require("dblapi.js");
+// const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI2NDgxMTYxMzcwODc0Njc1MiIsImJvdCI6dHJ1ZSwiaWF0IjoxNDgzMDk5MjAwfQ.8tpNASxdSsfkVF7YparhyV1Ouy5ORQ3AM2jitd_Y-PI');
 
 
 getBoobs = (callback) => {
@@ -22,8 +22,8 @@ exports.run = function (client, msg) {
     if(!msg.channel.permissionsOf(client.user.id).has('embedLinks')) return msg.channel.createMessage("I don't have `Send Embed` permission.\nPlease contact an administrator if you think this is a bug.");
     try {
         //Make user upvote!
-          let upvote = dbl.hasVoted(msg.author.id)
-          if(!upvote) return msg.channel.createMessage(`You must upvote this bot for NSFW commands!\nUpvote Here: https://discordbots.org/bot/411538973664608257`)
+          // let upvote = dbl.hasVoted(msg.author.id)
+          // if(!upvote) return msg.channel.createMessage(`You must upvote this bot for NSFW commands!\nUpvote Here: https://discordbots.org/bot/411538973664608257`)
         if (msg.channel.nsfw) {
             return getBoobs((a,b)=>{
               b ='http://media.oboobs.ru/'+b;

@@ -38,23 +38,11 @@ client.on('guildCreate', async (g) => {
         return g.leave();
         request.post("https://discordbots.org/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBL},json:{server_count:client.guilds.size}});
         request.post("https://bots.discord.pw/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBots},json:{server_count:client.guilds.size}});
-        
-    if (!config.botlists) return;
-
-    for (const list of config.botlists)
-        await sf.post(list.url.replace(':id', client.user.id)).send({ 'server_count': client.guilds.size }).set('Authorization', list.token);
 });
 
 client.on('guildDelete', async (g) => {
     request.post("https://discordbots.org/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBL},json:{server_count:client.guilds.size}});
     request.post("https://bots.discord.pw/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBots},json:{server_count:client.guilds.size}});
-
-    
-
-    if (!config.botlists) return;
-
-    for (const list of config.botlists)
-        await sf.post(list.url.replace(':id', client.user.id)).send({ 'server_count': client.guilds.size }).set('Authorization', list.token);
 });
 
 client.on('messageCreate', async (msg) => {
