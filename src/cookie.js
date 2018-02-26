@@ -4,6 +4,7 @@ const extras = require('../util/extras.js');
 const sf     = require('snekfetch');
 const mCol   = require('../util/messageCollector.js');
 const Eris   = require('../util/extensionLoader.js')(require('eris'));
+const request = require('request')
 
 const client = new Eris.Client(config.keys.discord, {
     disableEvents: extras.disable('GUILD_BAN_ADD', 'GUILD_BAN_REMOVE', 'MESSAGE_DELETE', 'MESSAGE_DELETE_BULK', 'MESSAGE_UPDATE', 'PRESENCE_UPDATE', 'TYPING_START', 'USER_UPDATE'),
@@ -26,6 +27,8 @@ let prefix = config.prefix
 client.on('ready', async () => {
     console.log(`Ready! (User: ${client.user.username})`);
     client.editStatus('online', { name: `${config.prefix}help || ${client.guilds.size} servers!` });
+    request.post("https://discordbots.org/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBL},json:{server_count:client.guilds.size}});
+    request.post("https://bots.discord.pw/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBots},json:{server_count:client.guilds.size}});
 
     
 });
@@ -33,10 +36,9 @@ client.on('ready', async () => {
 client.on('guildCreate', async (g) => {
     if (g.members.filter(m => m.bot).length / g.members.size >= 0.60)
         return g.leave();
-
-    // prefixes[g.id] = config.options.prefix;
-    
-
+        request.post("https://discordbots.org/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBL},json:{server_count:client.guilds.size}});
+        request.post("https://bots.discord.pw/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBots},json:{server_count:client.guilds.size}});
+        
     if (!config.botlists) return;
 
     for (const list of config.botlists)
@@ -44,7 +46,9 @@ client.on('guildCreate', async (g) => {
 });
 
 client.on('guildDelete', async (g) => {
-    // delete prefixes[g.id];
+    request.post("https://discordbots.org/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBL},json:{server_count:client.guilds.size}});
+    request.post("https://bots.discord.pw/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBots},json:{server_count:client.guilds.size}});
+
     
 
     if (!config.botlists) return;
