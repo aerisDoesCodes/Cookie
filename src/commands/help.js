@@ -17,7 +17,7 @@ exports.run = async function (client, msg, args) {
             title: 'Help Comand',
             description: `I\'m a well designed bot.\nDo \`c!help commandName\` for extended information on a command.\n\n**Looking for support?** https://discord.gg/DP9949T\n**Donate if you like Cookie** https://www.paypal.me/JohnLoveCookies`,
             fields: [
-                { name: 'Developer', value: '`eval`', inline: true },
+                { name: 'Developer', value: '`eval`, `exec`', inline: true },
                 { name: 'Misc', value: '`ping`, `invite`, `stats`, `about`', inline: false},
                 { name: 'Images', value: '`dog`, `cat`, `birb`', inline: false},
                 { name: 'Memes', value: '`trumpsay`', inline: false},
