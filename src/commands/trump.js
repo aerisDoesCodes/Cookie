@@ -6,6 +6,6 @@ exports.run = function (client, msg) {
 
 exports.usage = {
     main: '{prefix}{command}',
-    description: 'Trump say meme.',
+    description: 'What does trump thinks?',
     alias: 'trump'
 };
