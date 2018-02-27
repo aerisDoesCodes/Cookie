@@ -37,9 +37,25 @@ client.on('ready', async () => {
 });
 
 client.on('guildCreate', async (g) => {
+    client.createMessage('418050045783572481', {embed:{
+        color: 0x00ff00, 
+        title:`Joined Server`,
+        fields:[
+        {name:`Name`,value: g.name, inline: true},
+        {name:`Owner`,value: `${g.members.get(g.ownerID).username}#${g.members.get(g.ownerID).discriminator}`, inline: true}
+    ]
+    }})
 });
 
 client.on('guildDelete', async (g) => {
+    client.createMessage('418050045783572481', {embed:{
+        color: 0x00ff00, 
+        title:`Left Server`,
+        fields:[
+        {name:`Name`,value: g.name, inline: true},
+        {name:`Owner`,value: `${g.members.get(g.ownerID).username}#${g.members.get(g.ownerID).discriminator}`, inline: true}
+    ]
+    }})
 });
 
 client.on('messageCreate', async (msg) => {

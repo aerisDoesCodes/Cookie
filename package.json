@@ -9,6 +9,7 @@
   "author": "aeris",
   "license": "ISC",
   "dependencies": {
+    "dblposter": "^1.1.1",
     "eris": "^0.8.4",
     "got": "^8.2.0",
     "lodash": "^4.17.5",
