@@ -35,7 +35,8 @@ exports.run = function (client, msg) {
               "color": config.options.embedColour,
               "image": {
                   "url": b
-              }
+              },
+              "footer" : { text: "Powered by api.oboobs.ru/boobs/noise/"}
           }})
           });
 })

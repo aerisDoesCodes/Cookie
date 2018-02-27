@@ -20,8 +20,8 @@ exports.run = async function (client, msg, args) {
                 { name: 'Developer', value: '`eval`, `exec`', inline: true },
                 { name: 'Misc', value: '`ping`, `invite`, `stats`, `about`', inline: false},
                 { name: 'Images', value: '`dog`, `cat`, `birb`', inline: false},
-                { name: 'Memes', value: '`trumpsay`', inline: false},
-                { name: 'Nsfw', value: '`boobs`, `butts`', inline: false}
+                { name: 'Memes', value: '`trumpsay`, `memes`', inline: false},
+                { name: 'Nsfw', value: '`boobs`, `butts`, `pussy`', inline: false}
             ]
         }});
 

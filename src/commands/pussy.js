@@ -1,20 +1,16 @@
-const snek = require("snekfetch");
-const got = require('got');
-const _ = require('lodash');
+const randomPuppy = require('random-puppy');
 const DBL = require("dblapi.js");
 const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxMTUzODk3MzY2NDYwODI1NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNTE5NzEyODE5fQ.IKJXAx-SR6_Upx4VhR2UKuODAh5yuu3sisXiXpBXuUw');
-
-getAss = (callback) => {
-    got('http://api.obutts.ru/butts/noise/' + _.random(100,10732)).then(res => {
-      try {
-        let length =  JSON.parse(res.body).length;
-        callback(undefined, JSON.parse(res.body)[_.random(0,length)].preview);
-      } catch (err) {
-        callback(err);
-      }
-    }).catch(callback);
-  };
-
+var subreddits = [
+    'pussy',
+    'rearpussy',
+    'simps',
+    'vagina',
+    'MoundofVenus',
+    'PerfectPussies',
+    'spreading'
+]
+var sub = subreddits[Math.round(Math.random() * (subreddits.length - 1))];
 
 exports.run = function (client, msg) {
 
@@ -25,19 +21,15 @@ exports.run = function (client, msg) {
           let k = voters.includes(msg.author.id)
           if(!k) return msg.channel.createMessage('You must upvote this bot for NSFW commands!\nUpvote Here: https://discordbots.org/bot/411538973664608257')
         if (!msg.channel.nsfw) return msg.channel.createMessage("You must only run this command in a NSFW channel!");
-            getAss((a,b)=>{
-                b ='http://media.obutts.ru/'+b;
-              //This part is d.js, recreating this on eris!
-            //   emb.setImage(b);
-            //   msg.channel.send(' ', {embed: emb});
+        randomPuppy(sub).then(url=> {
             msg.channel.createMessage({embed:{
                 "color": config.options.embedColour,
                 "image": {
-                    "url": b
+                    "url": url
                 },
-                "footer" : { text: "Powered by api.obutts.ru/butts/noise/"}
+                "footer" : { text: "Powered by random-puppy" }
             }})
-            });
+        })
           })
         } catch(e) {
             msg.channel.createMessage(`An error occured:\n**${e}**\n\nPlease report this to the administrator if you think this is a bug.`)
@@ -47,5 +39,6 @@ exports.run = function (client, msg) {
 
 exports.usage = {
     main: '{prefix}{command}',
-    description: 'Shows random butts.'
+    description: 'Shows random pussy.',
+    alias: 'vagena'
 };
