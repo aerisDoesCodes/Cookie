@@ -5,7 +5,6 @@ const sf     = require('snekfetch');
 const mCol   = require('../util/messageCollector.js');
 const Eris   = require('../util/extensionLoader.js')(require('eris'));
 const request = require('request')
-const snekfetch = require('snekfetch')
 const dbl = require("dblposter");
 
 // Then, depending on what you called your client
