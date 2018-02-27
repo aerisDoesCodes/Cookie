@@ -5,6 +5,11 @@ const sf     = require('snekfetch');
 const mCol   = require('../util/messageCollector.js');
 const Eris   = require('../util/extensionLoader.js')(require('eris'));
 const request = require('request')
+const snekfetch = require('snekfetch')
+const dbl = require("dblposter");
+
+// Then, depending on what you called your client
+
 
 const client = new Eris.Client(config.keys.discord, {
     disableEvents: extras.disable('GUILD_BAN_ADD', 'GUILD_BAN_REMOVE', 'MESSAGE_DELETE', 'MESSAGE_DELETE_BULK', 'MESSAGE_UPDATE', 'PRESENCE_UPDATE', 'TYPING_START', 'USER_UPDATE'),
@@ -23,24 +28,19 @@ Object.defineProperty(Eris.TextChannel.prototype, 'awaitMessages', {
 
 let prefix = config.prefix
 // global.prefixes = require('./prefixes.json');
+const DBLPoster = new dbl(`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxMTUzODk3MzY2NDYwODI1NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNTE5NzEyODE5fQ.IKJXAx-SR6_Upx4VhR2UKuODAh5yuu3sisXiXpBXuUw`, client);
+
 
 client.on('ready', async () => {
     console.log(`Ready! (User: ${client.user.username})`);
     client.editStatus('online', { name: `${config.prefix}help || ${client.guilds.size} servers!` });
-    request.post("https://discordbots.org/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBL},json:{server_count:client.guilds.size}});
-    request.post("https://bots.discord.pw/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBots},json:{server_count:client.guilds.size}});
-
-    
+    DBLPoster.bind();
 });
 
 client.on('guildCreate', async (g) => {
-        request.post("https://discordbots.org/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBL},json:{server_count:client.guilds.size}});
-        request.post("https://bots.discord.pw/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBots},json:{server_count:client.guilds.size}});
 });
 
 client.on('guildDelete', async (g) => {
-    request.post("https://discordbots.org/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBL},json:{server_count:client.guilds.size}});
-    request.post("https://bots.discord.pw/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBots},json:{server_count:client.guilds.size}});
 });
 
 client.on('messageCreate', async (msg) => {
