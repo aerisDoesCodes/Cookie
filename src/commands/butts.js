@@ -1,8 +1,8 @@
 const snek = require("snekfetch");
 const got = require('got');
 const _ = require('lodash');
-// const DBL = require("dblapi.js");
-// const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI2NDgxMTYxMzcwODc0Njc1MiIsImJvdCI6dHJ1ZSwiaWF0IjoxNDgzMDk5MjAwfQ.8tpNASxdSsfkVF7YparhyV1Ouy5ORQ3AM2jitd_Y-PI');
+const DBL = require("dblapi.js");
+const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxMTUzODk3MzY2NDYwODI1NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNTE5NzEyODE5fQ.IKJXAx-SR6_Upx4VhR2UKuODAh5yuu3sisXiXpBXuUw');
 
 getAss = (callback) => {
     got('http://api.obutts.ru/butts/noise/' + _.random(100,10732)).then(res => {
@@ -21,10 +21,11 @@ exports.run = function (client, msg) {
     if(!msg.channel.permissionsOf(client.user.id).has('embedLinks')) return msg.channel.createMessage("I don't have `Send Embed` permission.\nPlease contact an administrator if you think this is a bug.");
     try {
         //Make user upvote!
-          // let upvote = dbl.hasVoted(msg.author.id)
-          // if(!upvote) return msg.channel.createMessage(`You must upvote this bot for NSFW commands!\nUpvote Here: https://discordbots.org/bot/411538973664608257`)
-        if (msg.channel.nsfw) {
-            return getAss((a,b)=>{
+        dbl.getVotes(true, 7).then(voters => {
+          let k = voters.includes(msg.author.id)
+          if(!k) return msg.channel.createMessage('You must upvote this bot for NSFW commands!\nUpvote Here: https://discordbots.org/bot/411538973664608257')
+        if (!msg.channel.nsfw) return msg.channel.createMessage("You must only run this command in a NSFW channel!");
+            getAss((a,b)=>{
                 b ='http://media.obutts.ru/'+b;
               //This part is d.js, recreating this on eris!
             //   emb.setImage(b);
@@ -36,11 +37,7 @@ exports.run = function (client, msg) {
                 }
             }})
             });
-          } else {
-            return msg.channel.createMessage("You must only run this command in a NSFW channel!");
-          }
-       
-          
+          })
         } catch(e) {
             msg.channel.createMessage(`An error occured:\n**${e}**\n\nPlease report this to the administrator if you think this is a bug.`)
         }
