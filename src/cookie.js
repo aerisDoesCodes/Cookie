@@ -34,8 +34,6 @@ client.on('ready', async () => {
 });
 
 client.on('guildCreate', async (g) => {
-    if (g.members.filter(m => m.bot).length / g.members.size >= 0.60)
-        return g.leave();
         request.post("https://discordbots.org/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBL},json:{server_count:client.guilds.size}});
         request.post("https://bots.discord.pw/api/bots/"+client.user.id+"/stats",{headers:{"Authorization":config.DBots},json:{server_count:client.guilds.size}});
 });
