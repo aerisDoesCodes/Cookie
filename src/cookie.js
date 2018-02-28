@@ -35,7 +35,7 @@ client.on('ready', async () => {
     console.log(`Ready! (User: ${client.user.username})`);
     client.editStatus('online', { name: `${config.prefix}help || ${client.guilds.size} servers!` });
     DBLPoster.bind();
-
+    setInterval(() => {
     sf.post(`https://botsfordiscord.com/api/v1/bots/${client.user.id}`)
         .set('Authorization', dbotsKey)
         .send({
@@ -43,6 +43,7 @@ client.on('ready', async () => {
         })
         .then(() => console.log('Updated botsfordiscord.com stats.'))
         .catch(err => console.error(`Whoops something went wrong why trying to update server count over botsfordiscord.com : ${err.body}`));
+    }, 1800000)
 });
 
 client.on('guildCreate', async (g) => {
@@ -55,7 +56,7 @@ client.on('guildCreate', async (g) => {
         {name:`Owner`,value: `${g.members.get(g.ownerID).username}#${g.members.get(g.ownerID).discriminator}`, inline: true}
     ]
     }})
-
+    setInterval(() => {
         sf.post(`https://botsfordiscord.com/api/v1/bots/${client.user.id}`)
         .set('Authorization', dbotsKey)
         .send({
@@ -63,6 +64,7 @@ client.on('guildCreate', async (g) => {
         })
         .then(() => console.log('Updated botsfordiscord.com stats.'))
         .catch(err => console.error(`Whoops something went wrong why trying to update server count over botsfordiscord.com : ${err.body}`));
+    }, 1800000)
 
         DBLPoster.bind();
 });
@@ -77,7 +79,7 @@ client.on('guildDelete', async (g) => {
         {name:`Owner`,value: `${g.members.get(g.ownerID).username}#${g.members.get(g.ownerID).discriminator}`, inline: true}
     ]
     }})
-
+    setInterval(() => {
         sf.post(`https://botsfordiscord.com/api/v1/bots/${client.user.id}`)
         .set('Authorization', dbotsKey)
         .send({
@@ -85,6 +87,7 @@ client.on('guildDelete', async (g) => {
         })
         .then(() => console.log('Updated botsfordiscord.com stats.'))
         .catch(err => console.error(`Whoops something went wrong why trying to update server count over botsfordiscord.com : ${err.body}`));
+    }, 1800000)
         DBLPoster.bind();
 });
 

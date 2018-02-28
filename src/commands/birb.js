@@ -16,6 +16,7 @@ exports.run = function (client, msg) {
                 })
        })
 
+
         } catch(e) {
             msg.channel.createMessage(`An error occured:\n**${e}**\n\nPlease report this to the administrator if you think this is a bug.`)
         }
