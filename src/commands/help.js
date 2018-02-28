@@ -19,9 +19,9 @@ exports.run = async function (client, msg, args) {
             fields: [
                 { name: 'Developer', value: '`eval`, `exec`', inline: true },
                 { name: 'Misc', value: '`ping`, `invite`, `stats`, `about`', inline: false},
-                { name: 'Images', value: '`dog`, `cat`, `birb`', inline: false},
+                { name: 'Images', value: '`dog`, `cat`, `birb`, `bunny`', inline: false},
                 { name: 'Memes', value: '`trump`, `memes`', inline: false},
-                { name: 'Nsfw', value: '`boobs`, `butts`, `pussy`, `girls`, `catsu`, `dick`', inline: false}
+                { name: 'Nsfw', value: '`boobs`, `butts`, `pussy`, `girls`, `catsu`, `dick`, `pantsu`', inline: false}
             ]
         }});
 
@@ -58,5 +58,6 @@ function pad(ln, str) {
 exports.usage = {
     main: '{prefix}{command}',
     argss: '[command]',
-    description: 'Shows commands and aliases.'
+    description: 'Shows commands and aliases.',
+    alias: 'cmds'
 };
