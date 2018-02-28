@@ -34,5 +34,5 @@ exports.run = function (client, msg) {
 
 exports.usage = {
     main: '{prefix}{command}',
-    description: 'Shows random girls naked.'
+    description: 'Shows random girls naked from /r/RealGirls.'
 };

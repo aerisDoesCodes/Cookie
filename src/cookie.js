@@ -6,6 +6,7 @@ const mCol   = require('../util/messageCollector.js');
 const Eris   = require('../util/extensionLoader.js')(require('eris'));
 const request = require('request')
 const dbl = require("dblposter");
+var dbotsKey = "e4f476451d22298a3f7f0c942422097ea61edb0682f66e153e29e77dedf7fd422a11afe51b0644a08bf8e58a7d2737d135bf22f78fcc29dfcbd10c2b5e4522b2";
 
 // Then, depending on what you called your client
 
@@ -34,6 +35,14 @@ client.on('ready', async () => {
     console.log(`Ready! (User: ${client.user.username})`);
     client.editStatus('online', { name: `${config.prefix}help || ${client.guilds.size} servers!` });
     DBLPoster.bind();
+
+    sf.post(`https://botsfordiscord.com/api/v1/bots/${client.user.id}`)
+        .set('Authorization', dbotsKey)
+        .send({
+          server_count: client.guilds.size
+        })
+        .then(() => console.log('Updated botsfordiscord.com stats.'))
+        .catch(err => console.error(`Whoops something went wrong why trying to update server count over botsfordiscord.com : ${err.body}`));
 });
 
 client.on('guildCreate', async (g) => {
