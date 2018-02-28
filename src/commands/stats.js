@@ -1,3 +1,6 @@
+const DBL = require("dblapi.js");
+const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxMTUzODk3MzY2NDYwODI1NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNTE5NzEyODE5fQ.IKJXAx-SR6_Upx4VhR2UKuODAh5yuu3sisXiXpBXuUw')
+
 exports.run = function (client, msg, args) {
 
     const moment = require('moment');
@@ -14,6 +17,7 @@ exports.run = function (client, msg, args) {
     if(!msg.channel.permissionsOf(client.user.id).has('embedLinks')) return msg.channel.createMessage("I don't have `Send Embed` permission.\nPlease contact an administrator if you think this is a bug.");
 
 try {
+    dbl.getVotes(true).then(k=>{
         msg.channel.createMessage({embed:{
             title: `Cookie v${config.version}`,
             color: config.options.embedColour,
@@ -23,9 +27,11 @@ try {
                 { name: 'Library', value: '[Eris](http://npmjs.com/package/eris)', inline: true },
                 { name: 'Guilds', value: client.guilds.size, inline: true },
                 { name: 'Users', value: client.users.size, inline: true },
-                { name: 'Latency', value: `${msg.channel.guild.shard.latency}ms`, inline: true }
+                { name: 'Latency', value: `${msg.channel.guild.shard.latency}ms`, inline: true },
+                { name: 'Upvote', value: `${k.length}`, inline: true }
             ]
         }});
+    })
     } catch(e){
         msg.channel.createMessage(`An error occured:\n**${e}**\n\nPlease report this to the administrator if you think this is a bug.`)
     }
