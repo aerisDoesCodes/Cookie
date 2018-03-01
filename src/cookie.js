@@ -35,65 +35,37 @@ client.on('ready', async () => {
     console.log(`Ready! (User: ${client.user.username})`);
     client.editStatus('online', { name: `${config.prefix}help || ${client.guilds.size} servers!` });
     DBLPoster.bind();
-    setInterval(() => {
-    sf.post(`https://botsfordiscord.com/api/v1/bots/${client.user.id}`)
-        .set('Authorization', dbotsKey)
-        .send({
-          server_count: client.guilds.size
-        })
-        .then(() => console.log('Updated botsfordiscord.com stats.'))
-        .catch(err => console.error(`Whoops something went wrong why trying to update server count over botsfordiscord.com : ${err.body}`));
-    }, 1800000)
 });
 
 client.on('guildCreate', async (g) => {
     client.editStatus('online', { name: `${config.prefix}help || ${client.guilds.size} servers!` });
     client.createMessage('418050045783572481', {embed:{
-        color: 0x00ff00, 
+        color: 0x00ff00,
         title:`Joined Server`,
         fields:[
         {name:`Name`,value: g.name, inline: true},
         {name:`Owner`,value: `${g.members.get(g.ownerID).username}#${g.members.get(g.ownerID).discriminator}`, inline: true}
     ]
     }})
-    setInterval(() => {
-        sf.post(`https://botsfordiscord.com/api/v1/bots/${client.user.id}`)
-        .set('Authorization', dbotsKey)
-        .send({
-          server_count: client.guilds.size
-        })
-        .then(() => console.log('Updated botsfordiscord.com stats.'))
-        .catch(err => console.error(`Whoops something went wrong why trying to update server count over botsfordiscord.com : ${err.body}`));
-    }, 1800000)
-
         DBLPoster.bind();
 });
 
 client.on('guildDelete', async (g) => {
     client.editStatus('online', { name: `${config.prefix}help || ${client.guilds.size} servers!` });
     client.createMessage('418050045783572481', {embed:{
-        color: 0xFF0000, 
+        color: 0xFF0000,
         title:`Left Server`,
         fields:[
         {name:`Name`,value: g.name, inline: true},
         {name:`Owner`,value: `${g.members.get(g.ownerID).username}#${g.members.get(g.ownerID).discriminator}`, inline: true}
     ]
     }})
-    setInterval(() => {
-        sf.post(`https://botsfordiscord.com/api/v1/bots/${client.user.id}`)
-        .set('Authorization', dbotsKey)
-        .send({
-          server_count: client.guilds.size
-        })
-        .then(() => console.log('Updated botsfordiscord.com stats.'))
-        .catch(err => console.error(`Whoops something went wrong why trying to update server count over botsfordiscord.com : ${err.body}`));
-    }, 1800000)
         DBLPoster.bind();
 });
 
 client.on('messageCreate', async (msg) => {
     if (msg.isFromDM || msg.author.bot || !msg.content.startsWith(prefix)) return;
-    
+
     let command = msg.content.slice(prefix.length).toLowerCase().split(/\s+/)[0];
     const args  = msg.content.split(" ").splice(1);
 
