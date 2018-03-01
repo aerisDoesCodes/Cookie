@@ -5,8 +5,9 @@ const sf     = require('snekfetch');
 const mCol   = require('../util/messageCollector.js');
 const Eris   = require('../util/extensionLoader.js')(require('eris'));
 const request = require('request')
-const dbl = require("dblposter");
 var dbotsKey = "e4f476451d22298a3f7f0c942422097ea61edb0682f66e153e29e77dedf7fd422a11afe51b0644a08bf8e58a7d2737d135bf22f78fcc29dfcbd10c2b5e4522b2";
+const superagent = require('superagent')
+
 
 // Then, depending on what you called your client
 
@@ -28,13 +29,10 @@ Object.defineProperty(Eris.TextChannel.prototype, 'awaitMessages', {
 
 let prefix = config.prefix
 // global.prefixes = require('./prefixes.json');
-const DBLPoster = new dbl(`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxMTUzODk3MzY2NDYwODI1NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNTE5NzEyODE5fQ.IKJXAx-SR6_Upx4VhR2UKuODAh5yuu3sisXiXpBXuUw`, client);
-
 
 client.on('ready', async () => {
     console.log(`Ready! (User: ${client.user.username})`);
     client.editStatus('online', { name: `${config.prefix}help || ${client.guilds.size} servers!` });
-    DBLPoster.bind();
 });
 
 client.on('guildCreate', async (g) => {
@@ -47,7 +45,11 @@ client.on('guildCreate', async (g) => {
         {name:`Owner`,value: `${g.members.get(g.ownerID).username}#${g.members.get(g.ownerID).discriminator}`, inline: true}
     ]
     }})
-        DBLPoster.bind();
+    superagent.post(`https://discordbots.org/api/bots/stats`)
+      .set('Authorization', 'YOUR DISCORDBOTS.ORG API TOKEN')
+      .send({ server_count: client.guilds && client.guilds.size ? client.guilds.size : (client.Guilds ? client.Guilds.size : Object.keys(client.Servers).length) })
+      .then(() => console.log('Updated discordbots.org stats'))
+      .catch(err => console.error(`Error updating discordbots.org stats: ${err.body || err}`));
 });
 
 client.on('guildDelete', async (g) => {
@@ -60,7 +62,11 @@ client.on('guildDelete', async (g) => {
         {name:`Owner`,value: `${g.members.get(g.ownerID).username}#${g.members.get(g.ownerID).discriminator}`, inline: true}
     ]
     }})
-        DBLPoster.bind();
+    superagent.post(`https://discordbots.org/api/bots/stats`)
+      .set('Authorization', 'YOUR DISCORDBOTS.ORG API TOKEN')
+      .send({ server_count: client.guilds && client.guilds.size ? client.guilds.size : (client.Guilds ? client.Guilds.size : Object.keys(client.Servers).length) })
+      .then(() => console.log('Updated discordbots.org stats'))
+      .catch(err => console.error(`Error updating discordbots.org stats: ${err.body || err}`));
 });
 
 client.on('messageCreate', async (msg) => {
