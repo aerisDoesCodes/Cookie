@@ -5,7 +5,7 @@ const sf     = require('snekfetch');
 const mCol   = require('../util/messageCollector.js');
 const Eris   = require('../util/extensionLoader.js')(require('eris'));
 const request = require('request')
-var dbotsKey = "e4f476451d22298a3f7f0c942422097ea61edb0682f66e153e29e77dedf7fd422a11afe51b0644a08bf8e58a7d2737d135bf22f78fcc29dfcbd10c2b5e4522b2";
+var dbotsKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxMTUzODk3MzY2NDYwODI1NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNTE5OTIyNDYyfQ.ZC7kyDkP6f7xBeC0sEn0kB9w8V7CrgG8THD9OvsU_To";
 const superagent = require('superagent')
 
 
@@ -46,7 +46,7 @@ client.on('guildCreate', async (g) => {
     ]
     }})
     superagent.post(`https://discordbots.org/api/bots/stats`)
-      .set('Authorization', 'YOUR DISCORDBOTS.ORG API TOKEN')
+      .set('Authorization', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxMTUzODk3MzY2NDYwODI1NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNTE5OTIyNDYyfQ.ZC7kyDkP6f7xBeC0sEn0kB9w8V7CrgG8THD9OvsU_To')
       .send({ server_count: client.guilds && client.guilds.size ? client.guilds.size : (client.Guilds ? client.Guilds.size : Object.keys(client.Servers).length) })
       .then(() => console.log('Updated discordbots.org stats'))
       .catch(err => console.error(`Error updating discordbots.org stats: ${err.body || err}`));
@@ -63,7 +63,7 @@ client.on('guildDelete', async (g) => {
     ]
     }})
     superagent.post(`https://discordbots.org/api/bots/stats`)
-      .set('Authorization', 'YOUR DISCORDBOTS.ORG API TOKEN')
+      .set('Authorization', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxMTUzODk3MzY2NDYwODI1NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNTE5OTIyNDYyfQ.ZC7kyDkP6f7xBeC0sEn0kB9w8V7CrgG8THD9OvsU_To')
       .send({ server_count: client.guilds && client.guilds.size ? client.guilds.size : (client.Guilds ? client.Guilds.size : Object.keys(client.Servers).length) })
       .then(() => console.log('Updated discordbots.org stats'))
       .catch(err => console.error(`Error updating discordbots.org stats: ${err.body || err}`));
